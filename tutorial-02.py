@@ -9,6 +9,9 @@ from random import random
 from ete4 import Tree
 
 
+print('We are going to show multiple trees.')
+
+
 # First tree.
 
 print('Creating and exploring the first tree.')

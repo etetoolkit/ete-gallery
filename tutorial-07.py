@@ -13,15 +13,20 @@ from ete4.smartview import Layout, BASIC_LAYOUT, Decoration, BoxFace, TextFace
 t = Tree()
 t.populate(30, dist_fn=random, support_fn=random)
 
-for node in t.traverse():
-    node.props['hola'] = 'mundo ' + str(node.level)
 
+# Add custom property.
+for node in t.traverse():
+    node.props['depth'] = node.level  # how deep we are in the tree
+
+
+# Our example criteria to say when we consider a node a "leaf".
 def too_deep(node):
     return node.level > 4
 
+
 tree_style = {
-    'show-popup-props': None,
-    'hide-popup-props': ['dist'],
+    'show-popup-props': None,  # will show all properties in the nodes popup
+    'hide-popup-props': ['dist'],  # except for 'dist'
     'is-leaf-fn': too_deep,
     'box': {'fill': 'blue', 'opacity': 0.1},
     'aliases': {
@@ -33,16 +38,21 @@ tree_style = {
 def draw_node(node, collapsed):
     if node.is_leaf:
         yield {'box': 'leaf',
-               'dot': {'fill': 'red'}}
-        yield TextFace('I am a leaf', style={'fill': 'white',
-                                             'stroke': 'black',
-                                             'stroke-width': 0.5})
+               'dot': {'fill': 'red'}}  # set the node style
+
+        yield TextFace('I am a leaf',  # add a face with its own style
+                       style={'fill': 'white',
+                              'stroke': 'black',
+                              'stroke-width': 0.5})
 
     if collapsed:
-        ndesc = sum(1 for sibling in collapsed for n in sibling.traverse())
+        # Find the number of leaves in the collapsed nodes and show it.
+        nleaves = sum(len(sibling) for sibling in collapsed)
+
         face = BoxFace(wmax=80, hmax=70,
                        style={'fill': 'red'},
-                       text=f'I have {ndesc} descendants')
+                       text=f'I have {nleaves} leaves')
+
         yield Decoration(face, position='aligned')
 
 

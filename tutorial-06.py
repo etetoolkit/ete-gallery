@@ -16,9 +16,9 @@ t.populate(10, dist_fn=random, support_fn=random)
 
 def draw_node(node):
     if node.is_leaf:
-        yield {'box': {'fill': 'lightblue'}}
+        yield {'box': {'fill': 'lightblue'}}  # set style of the node box
     else:
-        yield Decoration(TextFace('I am an inner node'), column=2)
+        yield Decoration(TextFace('I am an inner node'), column=2)  # add face
 
 
 layout = Layout(name='blue leaves', draw_node=draw_node)

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 """
-50k nodes
-Each node with sequences associated of 1.5k positions
+Example of a big tree with long sequences.
+Tree with 50k leaves, each node with sequences of 1.5k positions.
 """
 
 import random
@@ -10,8 +10,10 @@ import random
 from ete4 import Tree
 from ete4.smartview import BASIC_LAYOUT, Layout, Decoration, SeqFace
 
+random.seed(42)  # so we have the same trees in every run
 
-print('Creating random tree with 50k nodes...')
+
+print('Creating random tree with 50k leaves...')
 
 t = Tree()
 t.populate(50_000, dist_fn=random.random, support_fn=random.random)
@@ -28,16 +30,16 @@ for node in t.traverse():
 
 print('Drawing...')
 
-def layout_seqface_draw_node(node):
+def draw_node(node):
     if node.is_leaf:
-        face = SeqFace(
-            node.props.get('seq'),
-            poswidth=10,
-            draw_text=True, fs_max=15)
-
+        face = SeqFace(node.props.get('seq'),
+                       poswidth=10, draw_text=True, fs_max=15)
         yield Decoration(face, position='aligned')
 
-layout_seqface = Layout(name='seq', draw_node=layout_seqface_draw_node)
+layout = Layout(name='seq', draw_node=draw_node)
 
-t.explore(layouts=[BASIC_LAYOUT, layout_seqface])
-input('Tree explorer running. Press enter to stop the server and finish.\n')
+
+t.explore(layouts=[BASIC_LAYOUT, layout])
+
+print('Press enter to stop the server and finish.')
+input()

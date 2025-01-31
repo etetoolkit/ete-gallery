@@ -7,6 +7,7 @@ Example of using legends.
 from ete4 import Tree
 from ete4.smartview import Layout, BASIC_LAYOUT, LegendFace
 
+
 t = Tree('((a,b),c);')
 
 def draw_tree(tree):
@@ -22,6 +23,7 @@ def draw_tree(tree):
                      colormap={'one': '#129933', '2': 'blue', 'three': 'cyan'})
 
 layout = Layout('Layout with legend', draw_tree=draw_tree)
+
 
 t.explore(layouts=[BASIC_LAYOUT, layout])
 

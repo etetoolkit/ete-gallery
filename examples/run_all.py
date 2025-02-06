@@ -12,12 +12,19 @@ from subprocess import Popen, PIPE
 
 def main():
     scripts = (sys.argv[1:] if len(sys.argv) > 1 else
-               [x for x in os.listdir('.')
-                if x.startswith('ete4_') and x.endswith('.py')])
+               sorted(x for x in os.listdir('.') if is_python_executable(x)))
 
-    print('Will run the following scripts:', ' '.join(scripts))
+    print('We will run the following scripts:')
+    for script in scripts:
+        print('-', script)
+
     for script in scripts:
         launch(script)
+
+
+def is_python_executable(fname):
+    return (fname.endswith('.py') and  # looks like "something.py"
+            os.stat(fname).st_mode % 2 == 1)  # has the executable bit
 
 
 def launch(script):

@@ -1,3 +1,7 @@
+"""
+Functions to read fasta files with sequences and pfam domains.
+"""
+
 def read_seqs(fastafile):
     """Read a fasta file and return a dict with seqs[id] = sequence.
 

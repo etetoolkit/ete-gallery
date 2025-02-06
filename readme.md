@@ -1,12 +1,25 @@
 # ETE Gallery
 
-A demonstration of some of the capabilities of
+A demonstration of some of the graphical capabilities of
 [ETE](https://github.com/etetoolkit/ete).
+
+
+## 📖 Documentation
+
+The documentation about how to use the visualization capabilities of
+ETE can be found at
+https://etetoolkit.github.io/ete/tutorial/tutorial_smartview.html .
+
+
+## 💡 Examples
+
+The files in `examples` show the use of different representation
+elements (mostly faces).
 
 
 ## Tutorial
 
-The files `tutorial-*.py` introduce in a gentle way how to draw and
+The files in `tutorial` introduce in a gentle way how to draw and
 explore trees with ETE.
 
 1. Simple visualization

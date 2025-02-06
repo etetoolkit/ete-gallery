@@ -14,11 +14,11 @@ from read_data import read_seqs
 
 
 # Read an example tree.
-t = Tree(open('data/tree.nw'))
+t = Tree(open('../data/tree.nw'))
 
 
 # Read related alignments and use them when drawing the nodes.
-seqs = read_seqs('data/tree.aln.faa')
+seqs = read_seqs('../data/tree.aln.faa')
 
 # Show sequences with the default renderer (raster, which is faster).
 def draw_node(node):

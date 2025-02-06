@@ -16,7 +16,7 @@ t = Tree()
 t.populate(20, dist_fn=random.random, support_fn=random.random)
 
 
-images = ['data/'+x for x in ['python.jpg', 'ete.png', 'frog.jpeg']]
+images = ['../data/'+x for x in ['python.jpg', 'ete.png', 'frog.jpeg']]
 
 def draw_node(node):
     if node.is_leaf:

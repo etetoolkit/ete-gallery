@@ -14,10 +14,12 @@ def draw_tree(tree):
     yield LegendFace(title='random type',
                      variable='discrete',
                      colormap={'a': 'red', 'b': 'blue', 'c': 'green'})
+
     yield LegendFace(title='sample1',
                      variable='continuous',
                      value_range=(0, 100),
                      color_range=('#ffffff', '#971919'))
+
     yield LegendFace(title='yet another legend',
                      variable='discrete',
                      colormap={'one': '#129933', '2': 'blue', 'three': 'cyan'})

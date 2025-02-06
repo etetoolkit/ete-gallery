@@ -12,7 +12,7 @@ from subprocess import Popen, PIPE
 
 def main():
     scripts = (sys.argv[1:] if len(sys.argv) > 1 else
-               sorted(x for x in os.listdir('.') if is_python_executable(x)))
+               sorted(x for x in os.listdir('.') if is_example(x)))
 
     print('We will run the following scripts:')
     for script in scripts:
@@ -22,9 +22,11 @@ def main():
         launch(script)
 
 
-def is_python_executable(fname):
+def is_example(fname):
+    """Return True if file fname is one of the example programs."""
     return (fname.endswith('.py') and  # looks like "something.py"
-            os.stat(fname).st_mode % 2 == 1)  # has the executable bit
+            os.stat(fname).st_mode % 2 == 1 and  # and has the executable bit
+            not fname == os.path.basename(__file__))  # but not ourselves
 
 
 def launch(script):

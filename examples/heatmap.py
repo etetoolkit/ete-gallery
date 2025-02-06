@@ -9,14 +9,19 @@ import random
 from ete4 import Tree
 from ete4.smartview import BASIC_LAYOUT, Layout, Decoration, HeatmapFace
 
-# Read an example tree.
-t = Tree(open('../data/tree.nw'))
+random.seed(42)  # so we have the same trees in every run
+
+
+# Tree randomly populated.
+
+t = Tree()
+t.populate(50, dist_fn=random.random, support_fn=random.random)
 
 
 def draw_node(node):
     if node.is_leaf:
-        face = HeatmapFace([random.randint(0, 10) for _ in range(20)],
-                           (0, 10), ('000000', 'ffffff'))
+        values = [random.randint(-100, 100) for _ in range(80)]
+        face = HeatmapFace(values, [0, 100], ['#f00', '#0f0'])
         yield Decoration(face, position='aligned')
 
 layout = Layout(name='heatmap', draw_node=draw_node)

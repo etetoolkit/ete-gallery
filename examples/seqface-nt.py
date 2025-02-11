@@ -7,7 +7,7 @@ Example of SeqFace, sequence of nucleotides.
 import random
 
 from ete4 import Tree
-from ete4.smartview import BASIC_LAYOUT, Layout, Decoration, SeqFace
+from ete4.smartview import BASIC_LAYOUT, Layout, SeqFace
 
 from read_data import read_seqs
 
@@ -29,14 +29,13 @@ for node in t.traverse():
 # Create a layout that draws sequences aligned with the leaves.
 def draw_node(node):
     if node.is_leaf:
-        face = SeqFace(
+        yield SeqFace(
             node.props.get('seq'),
             seqtype='nt',  # nucleotides (the other option being 'aa')
             poswidth=10,
             draw_text=True,
-            fs_max=15)
-
-        yield Decoration(face, position='aligned')
+            fs_max=15,
+            position='aligned')
 
 layout = Layout(name='seq', draw_node=draw_node)
 

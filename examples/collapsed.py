@@ -10,7 +10,7 @@ faces will be used for collapsed/uncollapsed nodes.
 import random
 
 from ete4 import Tree
-from ete4.smartview import Layout, BASIC_LAYOUT, Decoration, TextFace
+from ete4.smartview import Layout, BASIC_LAYOUT, TextFace
 
 random.seed(42)  # so we have the same trees in every run
 
@@ -36,8 +36,8 @@ tree_style = {
 # a list of the collapsed (sibling) nodes, if any.
 def draw_node(node, collapsed):
     if not collapsed:  # add a little text to the bottom-right
-        yield Decoration(TextFace('Not collapsed'),
-                         position='bottom', column=1, anchor=(1, -1))
+        yield TextFace('Not collapsed',
+                       position='bottom', column=1, anchor=(1, -1))
 
 layout = Layout(name='collapsed tricks',
                 draw_tree=tree_style,

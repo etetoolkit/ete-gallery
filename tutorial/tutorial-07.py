@@ -7,7 +7,7 @@ Use of draw_node(node, collapsed), and is_leaf_fn().
 from random import random
 
 from ete4 import Tree
-from ete4.smartview import Layout, BASIC_LAYOUT, Decoration, BoxFace, TextFace
+from ete4.smartview import Layout, BASIC_LAYOUT, BoxFace, TextFace
 
 
 t = Tree()
@@ -49,11 +49,10 @@ def draw_node(node, collapsed):
         # Find the number of leaves in the collapsed nodes and show it.
         nleaves = sum(len(sibling) for sibling in collapsed)
 
-        face = BoxFace(wmax=80, hmax=70,
-                       style={'fill': 'red'},
-                       text=f'I have {nleaves} leaves')
-
-        yield Decoration(face, position='aligned')
+        yield BoxFace(wmax=80, hmax=70,
+                      style={'fill': 'red'},
+                      text=f'I have {nleaves} leaves',
+                      position='aligned')
 
 
 rects_layout = Layout(name='rects',

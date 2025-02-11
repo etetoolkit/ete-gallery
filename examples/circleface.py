@@ -7,7 +7,7 @@ Example of use of CircleFace.
 import random
 
 from ete4 import Tree
-from ete4.smartview import Layout, BASIC_LAYOUT, Decoration, CircleFace
+from ete4.smartview import Layout, BASIC_LAYOUT, CircleFace
 
 random.seed(42)  # so we have the same trees in every run
 
@@ -24,9 +24,9 @@ colors = ['red', 'blue', 'green']  # color to choose from
 
 def draw_node(node):
     if node.is_leaf:
-        face = CircleFace(rmax=random.randint(2, 20),
-                          style={'fill': random.choice(colors)})
-        yield Decoration(face, position='aligned')
+        yield CircleFace(rmax=random.randint(2, 20),
+                         style={'fill': random.choice(colors)},
+                         position='aligned')
 
 
 circles_layout = Layout(name='circles', draw_node=draw_node)

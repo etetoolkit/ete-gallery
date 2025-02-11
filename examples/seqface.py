@@ -8,7 +8,7 @@ First with default renderer, then with a random one for each sequence.
 import random
 
 from ete4 import Tree
-from ete4.smartview import BASIC_LAYOUT, Layout, Decoration, SeqFace
+from ete4.smartview import BASIC_LAYOUT, Layout, SeqFace
 
 from read_data import read_seqs
 
@@ -23,8 +23,8 @@ seqs = read_seqs('../data/tree.aln.faa')
 # Show sequences with the default renderer (raster, which is faster).
 def draw_node(node):
     if node.is_leaf:
-        face = SeqFace(seqs[node.name], poswidth=10, draw_text=True, fs_max=15)
-        yield Decoration(face, position='aligned')
+        yield SeqFace(seqs[node.name], poswidth=10, draw_text=True, fs_max=15,
+                      position='aligned')
 
 layout = Layout(name='sequences (raster)',
                 draw_node=draw_node)
@@ -39,9 +39,9 @@ input()
 # Show sequences with random renderer (svg or raster).
 def draw_node_random_render(node):
     if node.is_leaf:
-        face = SeqFace(seqs[node.name], poswidth=10, draw_text=True, fs_max=15,
-                       render=random.choice(['svg', 'raster']))  # for fun :)
-        yield Decoration(face, position='aligned')
+        yield SeqFace(seqs[node.name], poswidth=10, draw_text=True, fs_max=15,
+                      render=random.choice(['svg', 'raster']),  # for fun :)
+                      position='aligned')
 
 
 layout_random_render = Layout(name='sequences (random)',

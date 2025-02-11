@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
 """
-Layout with draw_node() that generates decorations/faces.
+Layout with draw_node() that generates faces.
 """
 
 from random import random
 
 from ete4 import Tree
-from ete4.smartview import Layout, BASIC_LAYOUT, Decoration, TextFace
+from ete4.smartview import Layout, BASIC_LAYOUT, TextFace
 
 
 t = Tree()
@@ -19,13 +19,12 @@ def draw_node(node):
         # We can yield elements, or return a list with all at the end.
         yield TextFace('I am an inner node!')  # a "face" with default position
     else:
-        yield Decoration(TextFace('I am a leaf!'),  # we create "decorations"
-                         position='right')          # to position the faces
+        yield TextFace('I am a leaf!', position='right')
 
     if node.is_root:
-        face = TextFace('it all starts here',
-                        style={'fill': 'blue'})  # faces can have styles
-        yield Decoration(face, position='left')
+        yield TextFace('it all starts here',
+                       style={'fill': 'blue'},  # faces can have styles
+                       position='left')
 
 
 layout = Layout(name='texts on different positions', draw_node=draw_node)

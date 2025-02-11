@@ -7,8 +7,7 @@ Tree style and node style with many options passed as arguments to explore().
 import random
 
 from ete4 import Tree
-from ete4.smartview import (Layout, BASIC_LAYOUT, Decoration, BoxFace,
-                            PropFace, TextFace)
+from ete4.smartview import Layout, BASIC_LAYOUT, BoxFace, PropFace, TextFace
 
 
 # Let's create a tree with some extra properties.
@@ -24,11 +23,10 @@ for node in t.traverse():
 
 # Custom layout
 def draw_node(node, collapsed):
-    yield Decoration(TextFace('visited node'), position='bottom')
+    yield TextFace('visited node', position='bottom')
 
-    yield Decoration(PropFace('coolness', fmt='cool: %.2g',
-                              style='myblue'),
-                     position='bottom', column=1, anchor=(1, -1))
+    yield PropFace('coolness', fmt='cool: %.2g', style='myblue',
+                   position='bottom', column=1, anchor=(1, -1))
 
     if node.is_leaf:
         yield {'box': {'stroke-width': '4px',
@@ -40,15 +38,15 @@ def draw_node(node, collapsed):
                        'opacity': 1,
                        'radius': 20},
                'hz-line': {'stroke-width': 2}}
-        face = BoxFace(wmax=80, hmax=70,
-                       style={'fill': 'lightblue'},
-                       text=f'node at depth {node.level}')
-        yield Decoration(face, position='aligned')
+        yield BoxFace(wmax=80, hmax=70,
+                      style={'fill': 'lightblue'},
+                      text=f'node at depth {node.level}',
+                      position='aligned')
     elif collapsed:
-        face = BoxFace(wmax=80, hmax=70,
-                       style={'fill': 'red'},
-                       text='Collapsing nodes')
-        yield Decoration(face, position='aligned')
+        yield BoxFace(wmax=80, hmax=70,
+                      style={'fill': 'red'},
+                      text='Collapsing nodes',
+                      position='aligned')
 
 
 layout = Layout(name='many', draw_node=draw_node)

@@ -8,15 +8,15 @@ Tree with 50k leaves, each node with sequences of 1.5k positions.
 import random
 
 from ete4 import Tree
-from ete4.smartview import BASIC_LAYOUT, Layout, Decoration, SeqFace
+from ete4.smartview import BASIC_LAYOUT, Layout, SeqFace
 
 random.seed(42)  # so we have the same trees in every run
 
 
-print('Creating random tree with 50k leaves...')
+print('Creating random tree with 10k leaves...')
 
 t = Tree()
-t.populate(50_000, dist_fn=random.random, support_fn=random.random)
+t.populate(10_000, dist_fn=random.random, support_fn=random.random)
 
 
 print('Annotating every node with a random sequence of 1500 aas...')
@@ -32,9 +32,9 @@ print('Drawing...')
 
 def draw_node(node):
     if node.is_leaf:
-        face = SeqFace(node.props.get('seq'),
-                       poswidth=10, draw_text=True, fs_max=15)
-        yield Decoration(face, position='aligned')
+        yield SeqFace(node.props.get('seq'),
+                      poswidth=10, draw_text=True, fs_max=15,
+                      position='aligned')
 
 layout = Layout(name='seq', draw_node=draw_node)
 

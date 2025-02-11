@@ -7,7 +7,7 @@ Example of use of RectFace.
 import random
 
 from ete4 import Tree
-from ete4.smartview import Layout, BASIC_LAYOUT, Decoration, RectFace
+from ete4.smartview import Layout, BASIC_LAYOUT, RectFace
 
 random.seed(42)  # so we have the same trees in every run
 
@@ -17,10 +17,10 @@ t.populate(20, dist_fn=random.random, support_fn=random.random)
 
 def draw_node(node):
     if node.is_leaf:
-        face = RectFace(wmax=80, hmax=70,
-                        style={'fill': 'blue', 'opacity': 0.7})
-        yield Decoration(face, position='top',
-                         column=random.choice([0, 1]))  # some will superimpose
+        yield RectFace(wmax=80, hmax=70,
+                       style={'fill': 'blue', 'opacity': 0.7},
+                       position='top',
+                       column=random.choice([0, 1]))  # some will superimpose
 
 layout = Layout(name='rects', draw_node=draw_node)
 

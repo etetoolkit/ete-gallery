@@ -21,7 +21,9 @@ t.populate(50, dist_fn=random.random, support_fn=random.random)
 def draw_node(node):
     if node.is_leaf:
         values = [random.randint(-100, 100) for _ in range(80)]
-        yield HeatmapFace(values, [0, 100], ['#f00', '#0f0'],
+        yield HeatmapFace(values,
+                          value_range=(0, 100),
+                          color_range=('#f00', '#0f0'),
                           position='aligned')
 
 layout = Layout(name='heatmap', draw_node=draw_node)

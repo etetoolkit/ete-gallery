@@ -18,7 +18,7 @@ def draw_tree(tree):
     yield LegendFace(title='sample1',
                      variable='continuous',
                      value_range=(0, 100),
-                     color_range=('#ffffff', '#971919'))
+                     color_range=('#0000ff', '#ffffff', '#ff0000'))
 
     yield LegendFace(title='yet another legend',
                      variable='discrete',

@@ -26,6 +26,12 @@ The files in `examples` show the use of different representation
 elements (mostly faces).
 
 
+## 👩‍🎓 Course material
+
+The files in `course` contain interactive jupyter notebooks that we
+have used as course material during ETE workshops.
+
+
 ## 📚 Documentation
 
 The documentation about how to use the visualization capabilities of
